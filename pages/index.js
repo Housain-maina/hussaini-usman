@@ -1,6 +1,11 @@
 import { NextSeo } from "next-seo";
-import Head from "next/head";
 import Image from "next/image";
+import reactjs from "../public/technologies/reactjs.png";
+import django from "../public/technologies/django.png";
+import python from "../public/technologies/python.png";
+import tailwindcss from "../public/technologies/tailwindcss.png";
+import javascript from "../public/technologies/javascript.png";
+import nextjs from "../public/technologies/nextjs.png";
 
 export default function Home() {
   const Technology = ({ source, alt }) => {
@@ -30,15 +35,12 @@ export default function Home() {
           TailwindCSS and Next.js
         </p>
         <div className="grid grid-cols-2 py-5 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          <Technology source="/technologies/reactjs.png" alt="reactjs" />
-          <Technology source="/technologies/django.png" alt="django" />
-          <Technology source="/technologies/python.png" alt="python" />
-          <Technology
-            source="/technologies/tailwindcss.png"
-            alt="tailwindcss"
-          />
-          <Technology source="/technologies/javascript.png" alt="javascript" />
-          <Technology source="/technologies/nextjs.png" alt="nextjs" />
+          <Technology source={reactjs} alt="reactjs" />
+          <Technology source={django} alt="django" />
+          <Technology source={python} alt="python" />
+          <Technology source={tailwindcss} alt="tailwindcss" />
+          <Technology source={javascript} alt="javascript" />
+          <Technology source={nextjs} alt="nextjs" />
         </div>
       </section>
       {/* HERO SECTION END */}
