@@ -12,21 +12,10 @@ export default function Home() {
           width="50"
           height="50"
           className="w-full h-full object-contain"
-          blurDataURL={source}
-          placeholder="blur"
         />
       </div>
     );
   };
-
-  const technologies = [
-    { source: "/technologies/reactjs.png", alt: "reactjs" },
-    { source: "/technologies/django.png", alt: "django" },
-    { source: "/technologies/python.png", alt: "python" },
-    { source: "/technologies/tailwindcss.png", alt: "tailwindcss" },
-    { source: "/technologies/javascript.png", alt: "javascript" },
-    { source: "/technologies/nextjs.png", alt: "nextjs" },
-  ];
 
   return (
     <>
@@ -41,9 +30,15 @@ export default function Home() {
           TailwindCSS and Next.js
         </p>
         <div className="grid grid-cols-2 py-5 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {technologies.map(technology => (
-            <Technology source={technology.source} alt={technology.alt} />
-          ))}
+          <Technology source="/technologies/reactjs.png" alt="reactjs" />
+          <Technology source="/technologies/django.png" alt="django" />
+          <Technology source="/technologies/python.png" alt="python" />
+          <Technology
+            source="/technologies/tailwindcss.png"
+            alt="tailwindcss"
+          />
+          <Technology source="/technologies/javascript.png" alt="javascript" />
+          <Technology source="/technologies/nextjs.png" alt="nextjs" />
         </div>
       </section>
       {/* HERO SECTION END */}
