@@ -12,6 +12,8 @@ export default function Home() {
           width="50"
           height="50"
           className="w-full h-full object-contain"
+          blurDataURL={source}
+          placeholder="blur"
         />
       </div>
     );
