@@ -24,7 +24,7 @@ export default function Home() {
 
   return (
     <>
-      <NextSeo title="Home - Hussaini Usman" />
+      <NextSeo title="Home" />
       {/* HERO SECTION START */}
       <section className="flex flex-col items-center py-12 lg:py-20">
         <h1 className="font-bold text-3xl md:text-3xl xl:text-4xl">
