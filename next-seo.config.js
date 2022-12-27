@@ -1,6 +1,6 @@
 export default {
   titleTemplate: "%s - Hussaini Usman",
-  themeColor: "#FF6C55",
+  themeColor: "#1F2937",
   openGraph: {
     type: "website",
     locale: "en_NG",
