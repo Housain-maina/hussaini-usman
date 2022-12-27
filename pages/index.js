@@ -61,7 +61,7 @@ export default function Home({ allProjects }) {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-2">
-          {allProjects?.allProjects?.map(project => (
+          {allProjects?.allProjects.slice(0, 2)?.map(project => (
             <ProjectCard {...project} key={project?.id} />
           ))}
         </div>
