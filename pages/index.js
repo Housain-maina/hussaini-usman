@@ -10,27 +10,12 @@ import dynamic from "next/dynamic";
 import { gql } from "graphql-request";
 import { graphQLInstance } from "@/lib/graphQLConfig";
 import Link from "next/link";
-import { ArrowRight } from "react-bootstrap-icons";
 
 const ProjectCard = dynamic(() => import("@/components/ProjectCard"), {
   ssr: true,
 });
 
 export default function Home({ allProjects }) {
-  const Technology = ({ source, alt }) => {
-    return (
-      <div className="p-4 bg-primary bg-opacity-20 rounded-lg w-50 h-50">
-        <Image
-          src={source}
-          alt={alt}
-          width="50"
-          height="50"
-          className="w-full h-full object-contain"
-        />
-      </div>
-    );
-  };
-
   return (
     <>
       <NextSeo title="Home" />
@@ -42,12 +27,60 @@ export default function Home({ allProjects }) {
           TailwindCSS and Next.js
         </p>
         <div className="grid grid-cols-2 py-5 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          <Technology source={reactjs} alt="reactjs" />
-          <Technology source={django} alt="django" />
-          <Technology source={python} alt="python" />
-          <Technology source={tailwindcss} alt="tailwindcss" />
-          <Technology source={javascript} alt="javascript" />
-          <Technology source={nextjs} alt="nextjs" />
+          <div className="p-4 bg-primary bg-opacity-20 rounded-lg w-50 h-50">
+            <Image
+              src={reactjs}
+              alt={"reactjs"}
+              width="50"
+              height="50"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div className="p-4 bg-primary bg-opacity-20 rounded-lg w-50 h-50">
+            <Image
+              src={django}
+              alt={"django"}
+              width="50"
+              height="50"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div className="p-4 bg-primary bg-opacity-20 rounded-lg w-50 h-50">
+            <Image
+              src={python}
+              alt={"python"}
+              width="50"
+              height="50"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div className="p-4 bg-primary bg-opacity-20 rounded-lg w-50 h-50">
+            <Image
+              src={tailwindcss}
+              alt={"tailwindcss"}
+              width="50"
+              height="50"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div className="p-4 bg-primary bg-opacity-20 rounded-lg w-50 h-50">
+            <Image
+              src={javascript}
+              alt={"javascript"}
+              width="50"
+              height="50"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div className="p-4 bg-primary bg-opacity-20 rounded-lg w-50 h-50">
+            <Image
+              src={nextjs}
+              alt={"nextjs"}
+              width="50"
+              height="50"
+              className="w-full h-full object-contain"
+            />
+          </div>
         </div>
       </section>
       {/* HERO SECTION END */}
