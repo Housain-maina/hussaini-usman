@@ -4,12 +4,12 @@ export default {
   openGraph: {
     type: "website",
     locale: "en_NG",
-    url: process.env.SITE_URL,
+    url: process.env.NEXT_PUBLIC_SITE_URL,
     site_name: "Hussaini Usman",
   },
   twitter: {
     handle: "@HussainiUsman_",
-    site: process.env.SITE_URL,
+    site: process.env.NEXT_PUBLIC_SITE_URL,
     cardType: "summary_large_image",
   },
 };
