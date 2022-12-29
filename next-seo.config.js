@@ -9,7 +9,7 @@ export default {
   },
   twitter: {
     handle: "@HussainiUsman_",
-    site: "@HussainiUsman_",
+    site: process.env.SITE_URL,
     cardType: "summary_large_image",
   },
 };
