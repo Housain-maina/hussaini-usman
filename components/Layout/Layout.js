@@ -15,14 +15,16 @@ const Layout = ({ children }) => {
   return (
     <>
       <nav
-        className={`${fira.variable} font-fira fixed top-0 w-full bg-gray-800`}
+        className={`${fira.variable} font-fira fixed top-0 w-full bg-primary ${
+          !navBarState && "bg-opacity-30"
+        }`}
       >
         <div className="container">
           <div className="relative flex h-16 items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
               <button
                 type="button"
-                className="inline-flex items-center justify-center rounded-md text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                className="inline-flex items-center justify-center rounded-md text-white hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                 aria-controls="mobile-menu"
                 aria-expanded="false"
                 onClick={() => {
