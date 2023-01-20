@@ -1,7 +1,5 @@
-import { graphQLInstance } from "@/lib/graphQLConfig";
-import { getArticle } from "@/lib/helpers";
+import { getAllArticles, getArticle } from "@/lib/helpers";
 import { format } from "date-fns";
-import { gql } from "graphql-request";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import React from "react";
@@ -156,16 +154,9 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const projectsQuery = gql`
-    query {
-      allProjects {
-        slug
-      }
-    }
-  `;
   const paths = [];
-  const allProjects = await graphQLInstance.request(projectsQuery);
-  allProjects?.allProjects?.forEach(post =>
+  const allArticles = await getAllArticles();
+  allArticles?.allArticles?.forEach(post =>
     paths.push({
       params: {
         slug: post?.slug,
