@@ -15,14 +15,14 @@ const Projects = ({ allProjects }) => {
         title="Projects"
         description="Powerful Projects. Proven Results. Web Development Solutions for Every Need."
       />
-      <section className="rounded-lg flex flex-col items-center justify-center py-14 bg-primary bg-opacity-30 lg:px-28">
+      <section className="rounded-lg flex flex-col items-center justify-center py-14 my-4 bg-primary bg-opacity-30 lg:px-28">
         <h1 className="font-bold text-3xl md:text-5xl">Projects</h1>
         <p className="font-semibold text-lg md:text-xl mt-2 text-center">
           Powerful Projects. Proven Results. Web Development Solutions for Every
           Need.
         </p>
       </section>
-      <section className="py-6">
+      <section className="py-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-2">
           {allProjects?.allProjects?.map(project => (
             <ProjectCard {...project} key={project?.id} />
