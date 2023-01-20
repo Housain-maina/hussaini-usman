@@ -55,7 +55,7 @@ const Blog = ({ post }) => {
         <p className="mb-3 text-gray-300 text-lg lg:text-xl font-semibold">
           {post?.description}
         </p>
-        <div className="flex flex-col">
+        {/* <div className="flex flex-col">
           <time className="font-semibold text-gray-400">
             Published at:{" "}
             {format(new Date(post._firstPublishedAt), "MMM dd, yyyy")}
@@ -64,7 +64,7 @@ const Blog = ({ post }) => {
             Last modified at:{" "}
             {format(new Date(post._updatedAt), "MMM dd, yyyy")}
           </time>
-        </div>
+        </div> */}
         <Image
           src={post?.thumbnail?.url}
           alt={`${post?.title} ${post?.description}`}
