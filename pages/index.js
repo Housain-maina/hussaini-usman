@@ -10,13 +10,17 @@ import dynamic from "next/dynamic";
 import { gql } from "graphql-request";
 import { graphQLInstance } from "@/lib/graphQLConfig";
 import Link from "next/link";
-import { ArrowRight } from "react-bootstrap-icons";
+import { getAllArticles } from "@/lib/helpers";
 
 const ProjectCard = dynamic(() => import("@/components/ProjectCard"), {
   ssr: true,
 });
 
-export default function Home({ allProjects }) {
+const BlogCard = dynamic(() => import("@/components/BlogCard"), {
+  ssr: true,
+});
+
+export default function Home({ allProjects, allArticles }) {
   const Technology = ({ source, alt }) => {
     return (
       <div className="p-4 bg-primary bg-opacity-20 rounded-lg w-50 h-50">
@@ -78,6 +82,34 @@ export default function Home({ allProjects }) {
         )}
       </section>
       {/* PROJECTS SECTION END */}
+
+      {/* BLOGS SECTION START */}
+      <section className="py-6 lg:py-12">
+        <div className="my-3">
+          <h2 className=" font-bold text-2xl xl:text-3xl">Blog</h2>
+          <p className=" text-sm md:text-base xl:text-lg">
+            Unlock the Potential of Web Development <br />
+            Get the Edge You Need!
+          </p>
+        </div>
+        <div className="grid grid-cols-1 gap-2 space-y-3 md:grid-cols-2 md:space-y-0 lg:grid-cols-3 lg:gap-4">
+          {allArticles?.slice(0, 3)?.map(post => (
+            <BlogCard {...post} key={post?.id} />
+          ))}
+        </div>
+
+        {allArticles?.length > 3 && (
+          <div className="mt-6 text-center">
+            <Link
+              href={"/blog"}
+              className="bg-primary  text-white font-semibold py-3 px-5 rounded-full cursor-pointer hover:underline"
+            >
+              Read more posts
+            </Link>
+          </div>
+        )}
+      </section>
+      {/* BLOGS SECTION END */}
     </>
   );
 }
@@ -99,9 +131,11 @@ const projectsQuery = gql`
 
 export async function getStaticProps() {
   const allProjects = await graphQLInstance.request(projectsQuery);
+  const allArticles = await getAllArticles();
   return {
     props: {
       allProjects: allProjects,
+      allArticles: allArticles?.allArticles,
     },
   };
 }
