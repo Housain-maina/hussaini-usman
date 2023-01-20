@@ -58,11 +58,11 @@ const Blog = ({ post }) => {
         <div className="flex flex-col">
           <time className="font-semibold text-gray-400">
             Published at:{" "}
-            {format(new Date(post?._firstPublishedAt), "MMM dd, yyyy")}
+            {format(new Date(post._firstPublishedAt), "MMM dd, yyyy")}
           </time>
           <time className="font-semibold text-gray-400 mt-1">
             Last modified at:{" "}
-            {format(new Date(post?._updatedAt), "MMM dd, yyyy")}
+            {format(new Date(post._updatedAt), "MMM dd, yyyy")}
           </time>
         </div>
         <Image
