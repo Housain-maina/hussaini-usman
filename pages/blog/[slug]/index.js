@@ -13,7 +13,7 @@ const Blog = ({ post }) => {
     <>
       <NextSeo
         title={post?.title}
-        description={post?.deescription}
+        description={post?.description}
         locale="en"
         canonical={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post?.slug}`}
         openGraph={{
