@@ -71,7 +71,7 @@ const Layout = ({ children }) => {
                 <Link href={"/"}>
                   <div className="w-70 h-50">
                     <Image
-                      src="/hussaini-usman.svg"
+                      src={process.env.NEXT_PUBLIC_SITE_LOGO}
                       width="120"
                       height="80"
                       alt="Hussaini Usman logo"
