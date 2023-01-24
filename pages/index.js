@@ -59,7 +59,9 @@ export default function Home({ allProjects, allArticles }) {
       {/* PROJECTS SECTION START */}
       <section className="py-6">
         <div className="my-3">
-          <h2 className=" font-bold text-2xl xl:text-3xl">Projects</h2>
+          <h2 className=" font-bold text-2xl xl:text-3xl">
+            Professional Experience
+          </h2>
           <p className=" text-sm md:text-base xl:text-lg">
             Interesting things I've built
           </p>
