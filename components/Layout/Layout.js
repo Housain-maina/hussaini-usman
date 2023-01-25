@@ -128,7 +128,9 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </nav>
-      <main className={`${fira.variable} font-fira container pt-16 lg:pt-20`}>
+      <main
+        className={`${fira.variable} font-fira container pt-16 lg:pt-20 min-h-screen`}
+      >
         {children}
       </main>
       <footer
