@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Fira_Code } from "@next/font/google";
 import Link from "next/link";
 import Image from "next/image";
-import { Github } from "react-bootstrap-icons";
+import { Github, Linkedin } from "react-bootstrap-icons";
+import { useRouter } from "next/router";
 
 const fira = Fira_Code({
   subsets: ["latin"],
@@ -12,6 +13,8 @@ const fira = Fira_Code({
 
 const Layout = ({ children }) => {
   const [navBarState, setNavBarState] = useState(false);
+  const navLinks = ["/blog", "/contact", "/projects"];
+  const router = useRouter();
   return (
     <>
       <nav
@@ -83,25 +86,15 @@ const Layout = ({ children }) => {
             <div className="flex flex-row items-center">
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
-                  <Link
-                    href={"/blog"}
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Blog
-                  </Link>
-                  <Link
-                    href={"/contact"}
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Contact
-                  </Link>
-
-                  <Link
-                    href={"/projects"}
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Projects
-                  </Link>
+                  {navLinks?.map((link, index) => (
+                    <Link
+                      key={index}
+                      href={link}
+                      className="text-gray-300 capitalize hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      {link.split("/")[1]}
+                    </Link>
+                  ))}
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -122,35 +115,58 @@ const Layout = ({ children }) => {
           id="mobile-menu"
         >
           <div className="space-y-1 px-2 pt-2 pb-3">
-            <Link
-              href={"/blog"}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setNavBarState(!navBarState)}
-            >
-              Blog
-            </Link>
-            <Link
-              href={"/contact"}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setNavBarState(!navBarState)}
-            >
-              Contact
-            </Link>
-
-            <Link
-              href={"/projects"}
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-              onClick={() => setNavBarState(!navBarState)}
-            >
-              Projects
-            </Link>
+            {navLinks?.map((link, index) => (
+              <Link
+                key={index}
+                href={link}
+                className="text-gray-300 capitalize hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setNavBarState(!navBarState)}
+              >
+                {link.split("/")[1]}
+              </Link>
+            ))}
           </div>
         </div>
       </nav>
       <main className={`${fira.variable} font-fira container pt-16 lg:pt-20`}>
         {children}
       </main>
-      <footer></footer>
+      <footer
+        className={`${fira.variable} font-fira bg-primary bg-opacity-30 py-8`}
+      >
+        <div className="container flex flex-col lg:flex-row justify-between items-start lg:items-center">
+          <Link href={"/"}>
+            <div className="w-70 h-50">
+              <Image
+                src={process.env.NEXT_PUBLIC_SITE_LOGO}
+                width="120"
+                height="80"
+                alt="Hussaini Usman logo"
+              />
+            </div>
+          </Link>
+
+          <div className="flex flex-col lg:flex-row space-y-4 items-start lg:items-center lg:space-x-8 lg:space-y-0 mt-5 lg:mt-0">
+            {navLinks?.map((link, index) => (
+              <Link
+                key={index}
+                href={link}
+                className="text-gray-300 capitalize hover:text-white text-base font-medium"
+              >
+                {link.split("/")[1]}
+              </Link>
+            ))}
+          </div>
+          <div className="flex flex-row items-center space-x-6 mt-5 lg:mt-0">
+            <a href="https://www.linkedin.com/in/hussainiusman" target="_blank">
+              <Linkedin size={25} />
+            </a>
+            <a href="https://github.com/Housain-maina" target="_blank">
+              <Github size={25} />
+            </a>
+          </div>
+        </div>
+      </footer>
     </>
   );
 };
