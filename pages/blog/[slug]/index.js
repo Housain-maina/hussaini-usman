@@ -3,10 +3,15 @@ import { format } from "date-fns";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import React from "react";
-import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { coldarkDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import {
+  StructuredText,
+  Image as DatoImage,
+  renderNodeRule,
+} from "react-datocms";
+import { isHeading, isCode, isParagraph } from "datocms-structured-text-utils";
+import { ClockFill } from "react-bootstrap-icons";
 
 const Blog = ({ post }) => {
   return (
@@ -48,27 +53,21 @@ const Blog = ({ post }) => {
         ]}
       />
 
-      <section className="py-6">
-        <h1 className="my-2 font-bold text-3xl md:text-4xl lg:text-5xl">
+      <section className="py-6 max-w-3xl mx-auto">
+        <h1 className="mb-2 font-bold text-2xl md:text-3xl lg:text-4xl leading-8">
           {post?.title}
         </h1>
         <p className="mb-3 text-gray-300 text-lg lg:text-xl font-semibold">
           {post?.description}
         </p>
-        <div className="flex flex-col">
-          {post?._firstPublishedAt && (
-            <time className="font-semibold text-gray-400">
-              Published at:{" "}
-              {format(new Date(post?._firstPublishedAt), "MMM dd, yyyy")}
-            </time>
-          )}
-          {post?._updatedAt && (
-            <time className="font-semibold text-gray-400 mt-1">
-              Last modified at:{" "}
-              {format(new Date(post?._updatedAt), "MMM dd, yyyy")}
-            </time>
-          )}
-        </div>
+
+        {post?._firstPublishedAt && (
+          <time className="font-semibold text-gray-400 text-lg lg:text-xl flex flex-row items-center">
+            <ClockFill className="inline-block mr-2" />
+            {format(new Date(post?._firstPublishedAt), "MMM dd, yyyy")}
+          </time>
+        )}
+
         <Image
           src={post?.thumbnail?.url}
           alt={`${post?.title} ${post?.description}`}
@@ -78,66 +77,101 @@ const Blog = ({ post }) => {
           blurDataURL={post?.thumbnail?.url}
           className="my-4"
         />
-        <div className="flex flex-row space-x-5 mb-5">
+        <div className="flex flex-row space-x-2 lg:space-x-5 mb-5 flex-wrap">
           {post?.tags?.map((tag, index) => (
-            <span key={index} className="text-lg font-semibold">
-              #{tag}
+            <span
+              key={index}
+              className="lg:text-lg font-semibold bg-primary rounded-full px-3 py-1 m-1"
+            >
+              {tag}
             </span>
           ))}
         </div>
-        <ReactMarkdown
-          rehypePlugins={[rehypeRaw]}
-          children={post?.bodyText}
-          components={{
-            p: ({ node, ...props }) => <p className="lg:text-lg" {...props} />,
-            h1: ({ node, ...props }) => (
-              <h2
-                className="font-semibold text-2xl md:text-3xl lg:text-4xl"
-                {...props}
-              />
+
+        <StructuredText
+          data={post?.content}
+          customNodeRules={[
+            // Add HTML anchors to heading levels for in-page navigation
+            renderNodeRule(isHeading, ({ node, children, key }) => {
+              switch (node.level) {
+                case 1:
+                  return (
+                    <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl mb-2 md:mb-3 lg:mb-4">
+                      {children}
+                    </h2>
+                  );
+                case 2:
+                  return (
+                    <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl mb-2 md:mb-3 lg:mb-4">
+                      {children}
+                    </h2>
+                  );
+                case 3:
+                  return (
+                    <h3 className="font-bold text-xl md:text-2xl lg:text-3xl mb-2 md:mb-3 lg:mb-4">
+                      {children}
+                    </h3>
+                  );
+                case 4:
+                  return (
+                    <h4 className="font-bold text-lg md:text-xl lg:text-2xl mb-2 md:mb-3 lg:mb-4">
+                      {children}
+                    </h4>
+                  );
+                case 5:
+                  return (
+                    <h4 className="font-bold text-base md:text-lg lg:text-xl mb-2 md:mb-3 lg:mb-4">
+                      {children}
+                    </h4>
+                  );
+              }
+            }),
+
+            // Use a custom syntax highlighter component for code blocks
+            renderNodeRule(isCode, ({ node, key }) => {
+              return (
+                <SyntaxHighlighter
+                  key={key}
+                  code={node.code}
+                  language={node.language}
+                  linesToBeHighlighted={node.highlight}
+                  style={coldarkDark}
+                  showLineNumbers
+                />
+              );
+            }),
+
+            // Apply different formatting to top-level paragraphs
+            renderNodeRule(
+              isParagraph,
+              ({ adapter: { renderNode }, node, children, key, ancestors }) => {
+                return renderNode(
+                  "p",
+                  {
+                    key,
+                    className: "mb-8 md:text-lg lg:text-xl [&>a]:text-primary",
+                  },
+                  children
+                );
+              }
             ),
-            h2: ({ node, ...props }) => (
-              <h2
-                className="font-semibold text-2xl md:text-3xl lg:text-4xl"
-                {...props}
-              />
-            ),
-            h3: ({ node, ...props }) => (
-              <h3
-                className="font-semibold text-xl md:text-2xl lg:text-3xl"
-                {...props}
-              />
-            ),
-            h4: ({ node, ...props }) => (
-              <h4
-                className="font-semibold text-lg md:text-xl lg:text-2xl"
-                {...props}
-              />
-            ),
-            h5: ({ node, ...props }) => (
-              <h5 className="font-semibold md:text-lg lg:text-xl" {...props} />
-            ),
-            h6: ({ node, ...props }) => (
-              <h6 className="font-semibold md:text-lg" {...props} />
-            ),
-            code: ({ node, ...props }) => (
-              <SyntaxHighlighter
-                style={coldarkDark}
-                showLineNumbers
-                language={"python"}
-                {...props}
-              />
-            ),
-            img: ({ src }) => (
-              <Image
-                placeholder="blur"
-                blurDataURL={src}
-                src={src}
-                width={1920}
-                height={1080}
-                className="my-3 object-contain object-center"
-              />
-            ),
+          ]}
+          renderBlock={({ record }) => {
+            if (record.__typename === "ImageRecord") {
+              return (
+                <DatoImage
+                  data={record.image.responsiveImage}
+                  className="mx-auto my-5"
+                />
+              );
+            }
+
+            return (
+              <>
+                <p>Don't know how to render a block!</p>
+                <pre>{JSON.stringify(record, null, 2)}</pre>
+              </>
+            );
           }}
         />
       </section>
