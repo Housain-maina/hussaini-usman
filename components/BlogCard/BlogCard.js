@@ -13,7 +13,7 @@ const BlogCard = ({ title, slug, thumbnail, _firstPublishedAt, bodyText }) => {
             src={thumbnail?.url}
             width="1920"
             height="1080"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center rounded-lg"
             placeholder="blur"
             blurDataURL={thumbnail?.url}
             alt={title}
