@@ -18,7 +18,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <nav
-        className={`${fira.variable} font-fira fixed top-0 w-full bg-primary ${
+        className={`${
+          fira.variable
+        } font-fira z-50 fixed top-0 w-full bg-primary ${
           !navBarState && "bg-opacity-30"
         }`}
       >
