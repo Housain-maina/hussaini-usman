@@ -88,12 +88,12 @@ const Contact = () => {
           </p>
 
           <a
-            href="mailto:hello@hussainiusman.tech"
+            href="mailto:hussaini@hussainiusman.tech"
             target="_blank"
             className="flex flex-row items-center"
           >
             <EnvelopeAtFill className="mr-2" size={20} />
-            hello@hussainiusman.tech
+            hussaini@hussainiusman.tech
           </a>
           <a
             className="flex flex-row items-center"
