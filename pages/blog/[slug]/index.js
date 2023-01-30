@@ -12,6 +12,7 @@ import {
 } from "react-datocms";
 import { isHeading, isCode, isParagraph } from "datocms-structured-text-utils";
 import { ClockFill } from "react-bootstrap-icons";
+import Script from "next/script";
 
 const Blog = ({ post }) => {
   return (
@@ -73,8 +74,6 @@ const Blog = ({ post }) => {
           alt={`${post?.title} ${post?.description}`}
           width="1920"
           height="1080"
-          placeholder="blur"
-          blurDataURL={post?.thumbnail?.url}
           className="my-4"
         />
         <div className="flex flex-row space-x-2 lg:space-x-5 mb-5 flex-wrap">
@@ -175,6 +174,15 @@ const Blog = ({ post }) => {
           }}
         />
       </section>
+      <Script
+        src="https://utteranc.es/client.js"
+        repo="Housain-maina/hussaini-usman"
+        issue-term={post?.title}
+        label="Comment"
+        theme="github-dark"
+        crossOrigin="anonymous"
+        async
+      />
     </>
   );
 };
