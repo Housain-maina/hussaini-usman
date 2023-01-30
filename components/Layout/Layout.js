@@ -3,7 +3,6 @@ import { Fira_Code } from "@next/font/google";
 import Link from "next/link";
 import Image from "next/image";
 import { Github, Linkedin } from "react-bootstrap-icons";
-import { useRouter } from "next/router";
 
 const fira = Fira_Code({
   subsets: ["latin"],
@@ -14,7 +13,6 @@ const fira = Fira_Code({
 const Layout = ({ children }) => {
   const [navBarState, setNavBarState] = useState(false);
   const navLinks = ["/blog", "/contact", "/projects"];
-  const router = useRouter();
   return (
     <>
       <nav
@@ -135,47 +133,42 @@ const Layout = ({ children }) => {
       >
         {children}
       </main>
-      {router.pathname !== "/blog/[slug]" && (
-        <footer
-          className={`${fira.variable} font-fira bg-primary bg-opacity-30 py-8`}
-        >
-          <div className="container flex flex-col lg:flex-row justify-between items-start lg:items-center">
-            <Link href={"/"}>
-              <div className="w-70 h-50">
-                <Image
-                  src={process.env.NEXT_PUBLIC_SITE_LOGO}
-                  width="120"
-                  height="80"
-                  alt="Hussaini Usman logo"
-                />
-              </div>
-            </Link>
+      <footer
+        className={`${fira.variable} font-fira bg-primary bg-opacity-30 py-8`}
+      >
+        <div className="container flex flex-col lg:flex-row justify-between items-start lg:items-center">
+          <Link href={"/"}>
+            <div className="w-70 h-50">
+              <Image
+                src={process.env.NEXT_PUBLIC_SITE_LOGO}
+                width="120"
+                height="80"
+                alt="Hussaini Usman logo"
+              />
+            </div>
+          </Link>
 
-            <div className="flex flex-col lg:flex-row space-y-4 items-start lg:items-center lg:space-x-8 lg:space-y-0 mt-5 lg:mt-0">
-              {navLinks?.map((link, index) => (
-                <Link
-                  key={index}
-                  href={link}
-                  className="text-gray-300 capitalize hover:text-white text-base font-medium"
-                >
-                  {link.split("/")[1]}
-                </Link>
-              ))}
-            </div>
-            <div className="flex flex-row items-center space-x-6 mt-5 lg:mt-0">
-              <a
-                href="https://www.linkedin.com/in/hussainiusman"
-                target="_blank"
+          <div className="flex flex-col lg:flex-row space-y-4 items-start lg:items-center lg:space-x-8 lg:space-y-0 mt-5 lg:mt-0">
+            {navLinks?.map((link, index) => (
+              <Link
+                key={index}
+                href={link}
+                className="text-gray-300 capitalize hover:text-white text-base font-medium"
               >
-                <Linkedin size={25} />
-              </a>
-              <a href="https://github.com/Housain-maina" target="_blank">
-                <Github size={25} />
-              </a>
-            </div>
+                {link.split("/")[1]}
+              </Link>
+            ))}
           </div>
-        </footer>
-      )}
+          <div className="flex flex-row items-center space-x-6 mt-5 lg:mt-0">
+            <a href="https://www.linkedin.com/in/hussainiusman" target="_blank">
+              <Linkedin size={25} />
+            </a>
+            <a href="https://github.com/Housain-maina" target="_blank">
+              <Github size={25} />
+            </a>
+          </div>
+        </div>
+      </footer>
     </>
   );
 };

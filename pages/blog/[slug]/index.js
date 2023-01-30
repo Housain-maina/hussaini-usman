@@ -12,7 +12,7 @@ import {
 } from "react-datocms";
 import { isHeading, isCode, isParagraph } from "datocms-structured-text-utils";
 import { ClockFill } from "react-bootstrap-icons";
-import Script from "next/script";
+import Giscus from "@giscus/react";
 
 const Blog = ({ post }) => {
   return (
@@ -174,15 +174,24 @@ const Blog = ({ post }) => {
           }}
         />
       </section>
-      <Script
-        src="https://utteranc.es/client.js"
-        repo="Housain-maina/hussaini-usman"
-        issue-term={post?.title}
-        label="Comment"
-        theme="github-dark"
-        crossOrigin="anonymous"
-        async
-      />
+
+      <section className="my-6 max-w-3xl mx-auto">
+        <Giscus
+          id="comments"
+          repo="Housain-maina/hussaini-usman"
+          repoId="R_kgDOIozwPQ"
+          category="Announcements"
+          categoryId="DIC_kwDOIozwPc4CT4rL"
+          mapping="og:title"
+          term={post?.title}
+          reactionsEnabled="1"
+          emitMetadata="1"
+          inputPosition="bottom"
+          theme="dark_protanopia"
+          lang="en"
+          loading="lazy"
+        />
+      </section>
     </>
   );
 };
