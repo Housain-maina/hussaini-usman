@@ -16,20 +16,6 @@ const BlogCard = dynamic(() => import("@/components/BlogCard"), {
 });
 
 export default function Home({ allProjects, allArticles }) {
-  const Technology = ({ source, alt }) => {
-    return (
-      <div className="p-4 bg-primary bg-opacity-20 rounded-lg w-50 h-50">
-        <Image
-          src={source}
-          alt={alt}
-          width="50"
-          height="50"
-          className="w-full h-full object-contain"
-        />
-      </div>
-    );
-  };
-
   const router = useRouter();
 
   return (
