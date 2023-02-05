@@ -15,7 +15,11 @@ const ProjectCard = ({ logo, slug, title, url, shortDescription }) => {
         />
       </div>
       <h3 className="font-bold text-lg mt-3">{title}</h3>
-      <a href={url} className="italic text-xs  flex flex-row items-center">
+      <a
+        href={url}
+        target="_blank"
+        className="italic text-xs  flex flex-row items-center"
+      >
         {url}{" "}
         <span className="ml-2">
           <BoxArrowInUpRight />
