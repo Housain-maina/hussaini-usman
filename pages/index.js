@@ -1,16 +1,11 @@
 import { NextSeo } from "next-seo";
 import Image from "next/image";
-import reactjs from "../public/technologies/reactjs.png";
-import django from "../public/technologies/django.png";
-import python from "../public/technologies/python.png";
-import tailwindcss from "../public/technologies/tailwindcss.png";
-import javascript from "../public/technologies/javascript.png";
-import nextjs from "../public/technologies/nextjs.png";
 import dynamic from "next/dynamic";
 import { gql } from "graphql-request";
 import { graphQLInstance } from "@/lib/graphQLConfig";
 import Link from "next/link";
 import { getAllArticles } from "@/lib/helpers";
+import { useRouter } from "next/router";
 
 const ProjectCard = dynamic(() => import("@/components/ProjectCard"), {
   ssr: true,
@@ -35,24 +30,29 @@ export default function Home({ allProjects, allArticles }) {
     );
   };
 
+  const router = useRouter();
+
   return (
     <>
       <NextSeo title="Home" />
       {/* HERO SECTION START */}
-      <section className="flex flex-col items-center py-12">
-        <h1 className="font-bold text-3xl xl:text-4xl">Hussaini Usman</h1>
-        <p className="text-center md:text-xl xl:text-2xl px-6 md:px-28 my-2">
-          Full-Stack Web Developer with a Background in React.js, Django,
-          TailwindCSS and Next.js
+      <section className="py-8">
+        <p className="md:text-lg">Hi, my name is</p>
+        <h1 className="font-bold text-2xl md:text-3xl xl:text-4xl">
+          Hussaini Usman
+          <br />
+          I'm a Full Stack Web Developer
+        </h1>
+        <p className="md:text-lg mt-2 md:mr-40">
+          with professional experience in building highly performant web
+          applications using modern technologies.
         </p>
-        <div className="grid grid-cols-2 py-5 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          <Technology source={reactjs} alt="reactjs" />
-          <Technology source={django} alt="django" />
-          <Technology source={python} alt="python" />
-          <Technology source={tailwindcss} alt="tailwindcss" />
-          <Technology source={javascript} alt="javascript" />
-          <Technology source={nextjs} alt="nextjs" />
-        </div>
+        <button
+          className="bg-primary py-3 font-semibold px-6 mt-5 rounded-sm"
+          onClick={() => router.push(process.env.NEXT_PUBLIC_RESUME_URL)}
+        >
+          Download my resume
+        </button>
       </section>
       {/* HERO SECTION END */}
 
