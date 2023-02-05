@@ -1,7 +1,6 @@
 import { getAllArticles } from "@/lib/helpers";
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import React from "react";
 
 const BlogCard = dynamic(() => import("@/components/BlogCard"), {
@@ -39,13 +38,19 @@ const Blog = ({ allArticles }) => {
           Unlock the Potential of Web Development - Get the Edge You Need!
         </p>
       </section>
-      <section className="my-4">
-        <div className="grid grid-cols-1 gap-2 space-y-3 md:grid-cols-2 md:space-y-0 lg:grid-cols-3 lg:gap-4">
-          {allArticles?.slice(0, 3)?.map(post => (
-            <BlogCard {...post} key={post?.id} />
-          ))}
-        </div>
-      </section>
+      {allArticles?.length > 0 ? (
+        <section className="my-4">
+          <div className="grid grid-cols-1 gap-2 space-y-3 md:grid-cols-2 md:space-y-0 lg:grid-cols-3 lg:gap-4">
+            {allArticles?.slice(0, 3)?.map(post => (
+              <BlogCard {...post} key={post?.id} />
+            ))}
+          </div>
+        </section>
+      ) : (
+        <section className="my-4 pt-4">
+          <p className="text-center">No blog posts at the moment!</p>
+        </section>
+      )}
     </>
   );
 };
