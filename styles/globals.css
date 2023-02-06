@@ -6,4 +6,9 @@
   body {
     @apply bg-gray-800 text-white;
   }
+  ul,
+  ol {
+    list-style: revert;
+    margin-left: 1.5rem;
+  }
 }
