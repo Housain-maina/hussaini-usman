@@ -33,7 +33,7 @@ export default function Home({ allProjects, allArticles, allExperiences }) {
         <p className="md:text-lg text-center">Salutations, I am</p>
         <h1 className="font-bold text-2xl md:text-3xl xl:text-4xl text-center">
           Hussaini Usman
-          <br />a skilled Full Stack Enginner
+          <br />a skilled Full Stack Engineer
         </h1>
         <p className="md:text-lg mt-2 text-center">
           with a wealth of experience in enhancing businesses with vibrant,
