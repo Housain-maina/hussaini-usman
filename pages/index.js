@@ -30,15 +30,14 @@ export default function Home({ allProjects, allArticles, allExperiences }) {
       <NextSeo title="Home" />
       {/* HERO SECTION START */}
       <section className="py-16 flex flex-col items-center px-2 md:px-28">
-        <p className="md:text-lg text-center">Hi, my name is</p>
+        <p className="md:text-lg text-center">Salutations, I am</p>
         <h1 className="font-bold text-2xl md:text-3xl xl:text-4xl text-center">
           Hussaini Usman
-          <br />
-          I'm a Full Stack Web Developer
+          <br />a skilled Full Stack Enginner
         </h1>
         <p className="md:text-lg mt-2 text-center">
-          with professional experience in building highly performant web
-          applications using modern technologies
+          with a wealth of experience in enhancing businesses with vibrant,
+          user-oriented web solutions
         </p>
         <button
           className="bg-primary py-3 text-lg font-semibold px-6 mt-5 rounded-sm hover:bg-opacity-90"
