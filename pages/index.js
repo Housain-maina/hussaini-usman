@@ -150,7 +150,7 @@ const projectsQuery = gql`
     allProjects {
       url
       title
-      slug
+      projectType
       shortDescription
       id
       logo {
