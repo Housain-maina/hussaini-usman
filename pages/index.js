@@ -62,6 +62,7 @@ export default function Home({ allProjects, allArticles, allExperiences }) {
               className="vertical-timeline-element--work"
               contentStyle={{ background: "#0096C7", color: "#fff" }}
               contentArrowStyle={{ borderRight: "7px solid  #0096C7" }}
+              visible={true}
               date={`${format(new Date(experience?.from), "MMMM yyyy")} - ${
                 experience?.to
                   ? format(new Date(experience?.to), "MMMM yyyy")
